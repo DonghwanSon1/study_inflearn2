@@ -70,10 +70,10 @@ class BookServiceTest @Autowired constructor(
   @DisplayName("책이 진작 대출되어 있다면, 신규 대출이 실패한다.")
   fun loanBookFailTest() {
     // given
-    bookRepository.save(Book("이상한 나라의 엘리스"))
+    bookRepository.save(Book( "이상한 나라의 엘리스"))
     val savedUser = userRepository.save(User("손동환", null))
     userLoanHistoryRepository.save(UserLoanHistory(savedUser, "이상한 나라의 엘리스", false))
-    val request = BookLoanRequest("손동환", "이상한 나라의 엘리스")
+    val request = BookLoanRequest(" 손동환", "이상한 나라의 엘리스")
 
     // when & then
     val message = assertThrows<IllegalArgumentException> {
@@ -101,8 +101,3 @@ class BookServiceTest @Autowired constructor(
   }
 
 }
-// given
-
-// when
-
-// then
