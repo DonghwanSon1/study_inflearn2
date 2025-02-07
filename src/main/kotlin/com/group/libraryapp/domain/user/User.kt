@@ -20,7 +20,7 @@ class User(
   val age: Int?,
 
   @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
-  val userLongHistory: MutableList<UserLoanHistory> = mutableListOf()
+  val userLoanHistory: MutableList<UserLoanHistory> = mutableListOf()
 ) {
 
   init {
@@ -32,10 +32,10 @@ class User(
   }
 
   fun loanBook(book: Book) {
-    this.userLongHistory.add(UserLoanHistory(null, this, book.name))
+    this.userLoanHistory.add(UserLoanHistory(null, this, book.name))
   }
 
   fun returnBook(bookName: String) {
-    this.userLongHistory.first { history -> history.bookName == bookName }.doReturn()
+    this.userLoanHistory.first { history -> history.bookName == bookName }.doReturn()
   }
 }
